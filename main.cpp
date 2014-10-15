@@ -3,15 +3,13 @@
 #include <fstream>
 #include <windows.h>
 
-using namespace std;
-
 //function prototypes
 void splashScreen();
 void mainMenu(int gameFile);
 int selectGame();
 void showStatistics(int gameFile);
-void getGameBoard(string n1, string n2, string n3, string n4, string n5, string n6, string n7, string n8, string n9);
-int endGame(string n1, string n2, string n3, string n4, string n5, string n6, string n7, string n8, string n9, bool tieGame);
+void getGameBoard(std::string n1, std::string n2, std::string n3, std::string n4, std::string n5, std::string n6, std::string n7, std::string n8, std::string n9);
+int endGame(std::string n1, std::string n2, std::string n3, std::string n4, std::string n5, std::string n6, std::string n7, std::string n8, std::string n9, bool tieGame);
 void gameOnePlayer(int gameFile);
 void gameTwoPlayer();
 void endGameSingleForPlayer(int gameFile);
@@ -35,14 +33,14 @@ void endGameMultiplayerTie();
 	//splash screen
 	void splashScreen()
 	{
-		cout << "\n\n";
-		cout << "  *******************************************\n";
-	  	cout << "  *******************************************\n";
-	  	cout << "  **                                       **\n";
-	  	cout << "  **              TIC-TAC-TOE              **\n";
-	  	cout << "  **                                       **\n";
-		cout << "  *******************************************\n";
-	  	cout << "  *******************************************\n\n";
+		std::cout << "\n\n";
+		std::cout << "  *******************************************\n";
+	  	std::cout << "  *******************************************\n";
+	  	std::cout << "  **                                       **\n";
+	  	std::cout << "  **              TIC-TAC-TOE              **\n";
+	  	std::cout << "  **                                       **\n";
+		std::cout << "  *******************************************\n";
+	  	std::cout << "  *******************************************\n\n";
 	}
 
 	//main menu
@@ -52,17 +50,17 @@ void endGameMultiplayerTie();
 
 		while(selection != 5)
 		{
-			cout << endl;
-			cout << "---- Main Menu ----\n";
-			cout << " 1 - Single Player\n";
-			cout << " 2 - Two Player\n";
-			cout << " 3 - Statistics\n";
-			cout << " 4 - Change User\n";
-			cout << " 5 - Quit\n";
-			cout << "-------------------\n";
-			cout << endl;
-			cout << "> ";
-			cin >> selection;
+			std::cout << std::endl;
+			std::cout << "---- Main Menu ----\n";
+			std::cout << " 1 - Single Player\n";
+			std::cout << " 2 - Two Player\n";
+			std::cout << " 3 - Statistics\n";
+			std::cout << " 4 - Change User\n";
+			std::cout << " 5 - Quit\n";
+			std::cout << "-------------------\n";
+			std::cout << std::endl;
+			std::cout << "> ";
+			std::cin >> selection;
 
 			if(selection == 1)
 			{
@@ -92,10 +90,10 @@ void endGameMultiplayerTie();
 	{
 		//declare varliables
 		int selection;
-		string gameOneInitials;
-		string gameTwoInitials;
-		string gameThreeInitials;
-		string gameFourInitials;
+		std::string gameOneInitials;
+		std::string gameTwoInitials;
+		std::string gameThreeInitials;
+		std::string gameFourInitials;
 		bool gameOneEmpty = false;
 		bool gameTwoEmpty = false;
 		bool gameThreeEmpty = false;
@@ -105,10 +103,10 @@ void endGameMultiplayerTie();
 		{
 
 			//open files and associate objects
-			ifstream saveOne("save1.txt");
-			ifstream saveTwo("save2.txt");
-			ifstream saveThree("save3.txt");
-			ifstream saveFour("save4.txt");
+			std::ifstream saveOne("save1.txt");
+			std::ifstream saveTwo("save2.txt");
+			std::ifstream saveThree("save3.txt");
+			std::ifstream saveFour("save4.txt");
 
 			//get game file initials
 			saveOne >> gameOneInitials;
@@ -135,18 +133,18 @@ void endGameMultiplayerTie();
 			}
 
 			//display game files
-			cout << "+-------------+ +-------------+\n";
-			cout << "|             | |             |\n";
-			cout << "| GAME 1: " << gameOneInitials << " | | GAME 2: " << gameTwoInitials << " |\n";
-			cout << "|             | |             |\n";
-			cout << "+-------------+ +-------------+\n";
-			cout << endl;
-			cout << "+-------------+ +-------------+\n";
-			cout << "|             | |             |\n";
-			cout << "| GAME 3: " << gameThreeInitials << " | | GAME 4: " << gameFourInitials << " |\n";
-			cout << "|             | |             |\n";
-			cout << "+-------------+ +-------------+\n";
-			cout << endl;
+			std::cout << "+-------------+ +-------------+\n";
+			std::cout << "|             | |             |\n";
+			std::cout << "| GAME 1: " << gameOneInitials << " | | GAME 2: " << gameTwoInitials << " |\n";
+			std::cout << "|             | |             |\n";
+			std::cout << "+-------------+ +-------------+\n";
+			std::cout << std::endl;
+			std::cout << "+-------------+ +-------------+\n";
+			std::cout << "|             | |             |\n";
+			std::cout << "| GAME 3: " << gameThreeInitials << " | | GAME 4: " << gameFourInitials << " |\n";
+			std::cout << "|             | |             |\n";
+			std::cout << "+-------------+ +-------------+\n";
+			std::cout << std::endl;
 
 			//close files
 			saveOne.close();
@@ -155,19 +153,19 @@ void endGameMultiplayerTie();
 			saveFour.close();
 
 			//select game and return value
-			cout << "[1-4]	Select Game" << endl;
-			cout << "[5]	Reset All Games" << endl;
-			cin >> selection;
+			std::cout << "[1-4]	Select Game" << std::endl;
+			std::cout << "[5]	Reset All Games" << std::endl;
+			std::cin >> selection;
 
 			if(selection == 1)
 			{
 				if(gameOneEmpty == true)
 				{
-					string newInitials;
-					cout << "Enter your initials: ";
-					cin >> newInitials;
-					ofstream newGame("save1.txt");
-					newGame << newInitials << "\t" << 0 << "\t" << 0 << "\t" << 0 << endl;
+					std::string newInitials;
+					std::cout << "Enter your initials: ";
+					std::cin >> newInitials;
+					std::ofstream newGame("save1.txt");
+					newGame << newInitials << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
 					newGame.close();
 				}
 				return 1;
@@ -176,11 +174,11 @@ void endGameMultiplayerTie();
 			{
 				if(gameTwoEmpty == true)
 				{
-					string newInitials;
-					cout << "Enter your initials: ";
-					cin >> newInitials;
-					ofstream newGame("save2.txt");
-					newGame << newInitials << "\t" << 0 << "\t" << 0 << "\t" << 0 << endl;
+					std::string newInitials;
+					std::cout << "Enter your initials: ";
+					std::cin >> newInitials;
+					std::ofstream newGame("save2.txt");
+					newGame << newInitials << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
 					newGame.close();
 				}
 				return 2;
@@ -189,11 +187,11 @@ void endGameMultiplayerTie();
 			{
 				if(gameThreeEmpty == true)
 				{
-					string newInitials;
-					cout << "Enter your initials: ";
-					cin >> newInitials;
-					ofstream newGame("save3.txt");
-					newGame << newInitials << "\t" << 0 << "\t" << 0 << "\t" << 0 << endl;
+					std::string newInitials;
+					std::cout << "Enter your initials: ";
+					std::cin >> newInitials;
+					std::ofstream newGame("save3.txt");
+					newGame << newInitials << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
 					newGame.close();
 				}
 				return 3;
@@ -202,11 +200,11 @@ void endGameMultiplayerTie();
 			{
 				if(gameFourEmpty == true)
 				{
-					string newInitials;
-					cout << "Enter your initials: ";
-					cin >> newInitials;
-					ofstream newGame("save4.txt");
-					newGame << newInitials << "\t" << 0 << "\t" << 0 << "\t" << 0 << endl;
+					std::string newInitials;
+					std::cout << "Enter your initials: ";
+					std::cin >> newInitials;
+					std::ofstream newGame("save4.txt");
+					newGame << newInitials << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
 					newGame.close();
 				}
 				return 4;
@@ -216,26 +214,26 @@ void endGameMultiplayerTie();
 				while(true)
 				{
 					int confirm;
-					cout << "Are you sure you want to delete all saved games?" << endl;
-					cout << "1 - YES" << endl;
-					cout << "2 - NO" << endl;
-					cin >> confirm;
+					std::cout << "Are you sure you want to delete all saved games?" << std::endl;
+					std::cout << "1 - YES" << std::endl;
+					std::cout << "2 - NO" << std::endl;
+					std::cin >> confirm;
 					if(confirm == 1)
 					{
 						//wipe all saves
-						ofstream wipeFile1("save1.txt");
-						ofstream wipeFile2("save2.txt");
-						ofstream wipeFile3("save3.txt");
-						ofstream wipeFile4("save4.txt");
-						wipeFile1 << "---" << "\t" << 0 << "\t" << 0 << "\t" << 0 << endl;
-						wipeFile2 << "---" << "\t" << 0 << "\t" << 0 << "\t" << 0 << endl;
-						wipeFile3 << "---" << "\t" << 0 << "\t" << 0 << "\t" << 0 << endl;
-						wipeFile4 << "---" << "\t" << 0 << "\t" << 0 << "\t" << 0 << endl;
+						std::ofstream wipeFile1("save1.txt");
+						std::ofstream wipeFile2("save2.txt");
+						std::ofstream wipeFile3("save3.txt");
+						std::ofstream wipeFile4("save4.txt");
+						wipeFile1 << "---" << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
+						wipeFile2 << "---" << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
+						wipeFile3 << "---" << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
+						wipeFile4 << "---" << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
 						wipeFile1.close();
 						wipeFile2.close();
 						wipeFile3.close();
 						wipeFile4.close();
-						cout << "All games deleted" << endl << endl;
+						std::cout << "All games deleted" << std::endl << std::endl;
 					}
 					break;
 				}
@@ -247,7 +245,7 @@ void endGameMultiplayerTie();
 	void showStatistics(int gameFile)
 	{
 		//declare variables
-		string playerInitials;
+		std::string playerInitials;
 		int playerGamesPlayed;
 		int playerGamesWon;
 		int playerGamesLost;
@@ -255,66 +253,66 @@ void endGameMultiplayerTie();
 		//open game file
 		if(gameFile == 1)
 		{
-			ifstream statsFile("save1.txt");
+			std::ifstream statsFile("save1.txt");
 			statsFile >> playerInitials >> playerGamesPlayed >> playerGamesWon >> playerGamesLost;
 			statsFile.close();
 		}
 		if(gameFile == 2)
 		{
-			ifstream statsFile("save2.txt");
+			std::ifstream statsFile("save2.txt");
 			statsFile >> playerInitials >> playerGamesPlayed >> playerGamesWon >> playerGamesLost;
 			statsFile.close();
 		}
 		if(gameFile == 3)
 		{
-			ifstream statsFile("save3.txt");
+			std::ifstream statsFile("save3.txt");
 			statsFile >> playerInitials >> playerGamesPlayed >> playerGamesWon >> playerGamesLost;
 			statsFile.close();
 		}
 		if(gameFile == 4)
 		{
-			ifstream statsFile("save4.txt");
+			std::ifstream statsFile("save4.txt");
 			statsFile >> playerInitials >> playerGamesPlayed >> playerGamesWon >> playerGamesLost;
 			statsFile.close();
 		}
 
 		//display stats
-		cout << endl;
-		cout << "**** Player Statistics ****\n";
-		cout << endl;
-		cout << "Player  Games   Won     Lost\n";
-		cout << "----------------------------\n";
-		cout << playerInitials << "\t" << playerGamesPlayed << "\t" << playerGamesWon << "\t" << playerGamesLost << endl << endl;
+		std::cout << std::endl;
+		std::cout << "**** Player Statistics ****\n";
+		std::cout << std::endl;
+		std::cout << "Player  Games   Won     Lost\n";
+		std::cout << "----------------------------\n";
+		std::cout << playerInitials << "\t" << playerGamesPlayed << "\t" << playerGamesWon << "\t" << playerGamesLost << std::endl << std::endl;
 	}
 
 	//display game board
-	void getGameBoard(string n1, string n2, string n3, string n4, string n5, string n6, string n7, string n8, string n9)
+	void getGameBoard(std::string n1, std::string n2, std::string n3, std::string n4, std::string n5, std::string n6, std::string n7, std::string n8, std::string n9)
 	{
 
 		//clear screen
-		cout << "\n\n\n\n\n\n\n\n\n\n";
+		std::cout << "\n\n\n\n\n\n\n\n\n\n";
 
 		//display game board
-		cout << "  -----------------------\n\n";
-		cout << "    +-----+-----+-----+\n";
-		cout << "    |     |     |     |\n";
-		cout << "    |  " << n1 << "  |  " << n2 << "  |  " << n3 << "  |\n";
-		cout << "    |     |     |     |\n";
-		cout << "    +-----+-----+-----+\n";
-		cout << "    |     |     |     |\n";
-		cout << "    |  " << n4 << "  |  " << n5 << "  |  " << n6 << "  |\n";
-		cout << "    |     |     |     |\n";
-		cout << "    +-----+-----+-----+\n";
-		cout << "    |     |     |     |\n";
-		cout << "    |  " << n7 << "  |  " << n8 << "  |  " << n9 << "  |\n";
-		cout << "    |     |     |     |\n";
-		cout << "    +-----+-----+-----+\n";
-		cout << "\n";
-		cout << "  -----------------------\n\n";
+		std::cout << "  -----------------------\n\n";
+		std::cout << "    +-----+-----+-----+\n";
+		std::cout << "    |     |     |     |\n";
+		std::cout << "    |  " << n1 << "  |  " << n2 << "  |  " << n3 << "  |\n";
+		std::cout << "    |     |     |     |\n";
+		std::cout << "    +-----+-----+-----+\n";
+		std::cout << "    |     |     |     |\n";
+		std::cout << "    |  " << n4 << "  |  " << n5 << "  |  " << n6 << "  |\n";
+		std::cout << "    |     |     |     |\n";
+		std::cout << "    +-----+-----+-----+\n";
+		std::cout << "    |     |     |     |\n";
+		std::cout << "    |  " << n7 << "  |  " << n8 << "  |  " << n9 << "  |\n";
+		std::cout << "    |     |     |     |\n";
+		std::cout << "    +-----+-----+-----+\n";
+		std::cout << "\n";
+		std::cout << "  -----------------------\n\n";
 	}
 
 	//end game checker
-	int endGame(string n1, string n2, string n3, string n4, string n5, string n6, string n7, string n8, string n9, bool tieGame)
+	int endGame(std::string n1, std::string n2, std::string n3, std::string n4, std::string n5, std::string n6, std::string n7, std::string n8, std::string n9, bool tieGame)
 	{
 		//return values:
 		//	1 = win for player 1
@@ -403,36 +401,36 @@ void endGameMultiplayerTie();
 		void endGameSingleForPlayer(int gameFile)
 		{
 			updateStats(gameFile, 1, 1, 0);
-			cout << "\n";
-			cout << "***************************\n";
-			cout << "*                         *\n";
-			cout << "*    HUMAN PLAYER WINS!   *\n";
-			cout << "*                         *\n";
-			cout << "***************************\n\n";
+			std::cout << "\n";
+			std::cout << "***************************\n";
+			std::cout << "*                         *\n";
+			std::cout << "*    HUMAN PLAYER WINS!   *\n";
+			std::cout << "*                         *\n";
+			std::cout << "***************************\n\n";
 		}
 
 		//end game single (ai)
 		void endGameSingleForAi(int gameFile)
 		{
 			updateStats(gameFile, 1, 0, 1);
-			cout << "\n";
-			cout << "***************************\n";
-			cout << "*                         *\n";
-			cout << "*  COMPUTER PLAYER WINS!  *\n";
-			cout << "*                         *\n";
-			cout << "***************************\n\n";
+			std::cout << "\n";
+			std::cout << "***************************\n";
+			std::cout << "*                         *\n";
+			std::cout << "*  COMPUTER PLAYER WINS!  *\n";
+			std::cout << "*                         *\n";
+			std::cout << "***************************\n\n";
 		}
 
 		//end game single (tie)
 		void endGameSingleTie(int gameFile)
 		{
 			updateStats(gameFile, 1, 0, 0);
-			cout << "\n";
-			cout << "***************************\n";
-			cout << "*                         *\n";
-			cout << "*        TIE GAME!        *\n";
-			cout << "*                         *\n";
-			cout << "***************************\n\n";
+			std::cout << "\n";
+			std::cout << "***************************\n";
+			std::cout << "*                         *\n";
+			std::cout << "*        TIE GAME!        *\n";
+			std::cout << "*                         *\n";
+			std::cout << "***************************\n\n";
 		}
 
 		//end game multiplayer (player 1)
@@ -457,7 +455,7 @@ void endGameMultiplayerTie();
 	void updateStats(int gameFile, int x, int y, int z)
 	{
 		//declare variables
-		string playerInitials;
+		std::string playerInitials;
 		int playerGamesPlayed;
 		int playerGamesWon;
 		int playerGamesLost;
@@ -465,57 +463,57 @@ void endGameMultiplayerTie();
 		//update correct game file
 		if(gameFile == 1)
 		{
-			ifstream getFile("save1.txt");
+			std::ifstream getFile("save1.txt");
 			getFile >> playerInitials >> playerGamesPlayed >> playerGamesWon >> playerGamesLost;
 			playerGamesPlayed += x;
 			playerGamesWon += y;
 			playerGamesLost += z;
 			getFile.close();
 
-			ofstream updateFile("save1.txt");
-			updateFile << playerInitials << "\t" << playerGamesPlayed << "\t" << playerGamesWon << "\t" << playerGamesLost << endl;
+			std::ofstream updateFile("save1.txt");
+			updateFile << playerInitials << "\t" << playerGamesPlayed << "\t" << playerGamesWon << "\t" << playerGamesLost << std::endl;
 			updateFile.close();
 		}
 
 		if(gameFile == 2)
 		{
-			ifstream getFile("save2.txt");
+			std::ifstream getFile("save2.txt");
 			getFile >> playerInitials >> playerGamesPlayed >> playerGamesWon >> playerGamesLost;
 			playerGamesPlayed += x;
 			playerGamesWon += y;
 			playerGamesLost += z;
 			getFile.close();
 
-			ofstream updateFile("save2.txt");
-			updateFile << playerInitials << "\t" << playerGamesPlayed << "\t" << playerGamesWon << "\t" << playerGamesLost << endl;
+			std::ofstream updateFile("save2.txt");
+			updateFile << playerInitials << "\t" << playerGamesPlayed << "\t" << playerGamesWon << "\t" << playerGamesLost << std::endl;
 			updateFile.close();
 		}
 
 		if(gameFile == 3)
 		{
-			ifstream getFile("save3.txt");
+			std::ifstream getFile("save3.txt");
 			getFile >> playerInitials >> playerGamesPlayed >> playerGamesWon >> playerGamesLost;
 			playerGamesPlayed += x;
 			playerGamesWon += y;
 			playerGamesLost += z;
 			getFile.close();
 
-			ofstream updateFile("save3.txt");
-			updateFile << playerInitials << "\t" << playerGamesPlayed << "\t" << playerGamesWon << "\t" << playerGamesLost << endl;
+			std::ofstream updateFile("save3.txt");
+			updateFile << playerInitials << "\t" << playerGamesPlayed << "\t" << playerGamesWon << "\t" << playerGamesLost << std::endl;
 			updateFile.close();
 		}
 
 		if(gameFile == 4)
 		{
-			ifstream getFile("save4.txt");
+			std::ifstream getFile("save4.txt");
 			getFile >> playerInitials >> playerGamesPlayed >> playerGamesWon >> playerGamesLost;
 			playerGamesPlayed += x;
 			playerGamesWon += y;
 			playerGamesLost += z;
 			getFile.close();
 
-			ofstream updateFile("save4.txt");
-			updateFile << playerInitials << "\t" << playerGamesPlayed << "\t" << playerGamesWon << "\t" << playerGamesLost << endl;
+			std::ofstream updateFile("save4.txt");
+			updateFile << playerInitials << "\t" << playerGamesPlayed << "\t" << playerGamesWon << "\t" << playerGamesLost << std::endl;
 			updateFile.close();
 		}
 	}
@@ -524,15 +522,15 @@ void endGameMultiplayerTie();
 	void gameOnePlayer(int gameFile)
 	{
 		//declare varliables
-		string n1 = "1";
-		string n2 = "2";
-		string n3 = "3";
-		string n4 = "4";
-		string n5 = "5";
-		string n6 = "6";
-		string n7 = "7";
-		string n8 = "8";
-		string n9 = "9";
+		std::string n1 = "1";
+		std::string n2 = "2";
+		std::string n3 = "3";
+		std::string n4 = "4";
+		std::string n5 = "5";
+		std::string n6 = "6";
+		std::string n7 = "7";
+		std::string n8 = "8";
+		std::string n9 = "9";
 		int playerOneMoves = 0;
 		int computerMoves = 0;
 		int move;
@@ -543,13 +541,13 @@ void endGameMultiplayerTie();
 		{
 			//show game board
 			getGameBoard(n1, n2, n3, n4, n5, n6, n7, n8, n9);
-			cout << "  *** PLAYER ONE ***\n";
-			cout << "  Enter your move using 1 - 9: ";
+			std::cout << "  *** PLAYER ONE ***\n";
+			std::cout << "  Enter your move using 1 - 9: ";
 
 			//player 1 move loop
 			while(true)
 			{
-				cin >> move;
+				std::cin >> move;
 				if(move == 1 && n1 == "1")
 				{
 					n1 = "X";
@@ -706,7 +704,7 @@ void endGameMultiplayerTie();
 					computerMoves += 1;
 					break;
 				}
-								if((n1 == "X") && (n4 == "X") && (n7 == "7"))
+                if((n1 == "X") && (n4 == "X") && (n7 == "7"))
 				{
 					n7 = "O";
 					computerMoves += 1;
