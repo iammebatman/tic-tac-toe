@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1413569959 source:c:\github\tic-tac-toe\game.cpp
+	<iostream>
+	<windows.h>
+	"game.h"
+	"gameChecks.h"
+	"gameDisplays.h"
+
+1413569439 c:\github\tic-tac-toe\gamechecks.h
+
+1413569716 c:\github\tic-tac-toe\gamedisplays.h
+	<iostream>
+
+1413570041 source:c:\github\tic-tac-toe\gamechecks.cpp
+	<string>
+	<sys/stat.h>
+
+1413569344 c:\github\tic-tac-toe\game.h
+
+1413570079 source:c:\github\tic-tac-toe\gamedisplays.cpp
+	<iostream>
+	<string>
+	<fstream>
+	"gameDisplays.h"
+	"game.h"
+	"gameChecks.h"
+	"gameOperations.h"
+
+1413565446 c:\github\tic-tac-toe\gameoperations.h
+
+1413570124 source:c:\github\tic-tac-toe\gameoperations.cpp
+	<fstream>
+
+1413569443 source:c:\github\tic-tac-toe\main.cpp
+	"game.h"
+	"gameDisplays.h"
+	"gameChecks.h"
+	"gameOperations.h"
+
