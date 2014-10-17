@@ -8,17 +8,17 @@
 
 1413572040 c:\github\tic-tac-toe\gamechecks.h
 
-1413569716 c:\github\tic-tac-toe\gamedisplays.h
+1413577524 c:\github\tic-tac-toe\gamedisplays.h
 	<iostream>
 
-1413575160 source:c:\github\tic-tac-toe\gamechecks.cpp
+1413576215 source:c:\github\tic-tac-toe\gamechecks.cpp
 	<iostream>
 	<string>
 	<sys/stat.h>
 
 1413569344 c:\github\tic-tac-toe\game.h
 
-1413570079 source:c:\github\tic-tac-toe\gamedisplays.cpp
+1413578738 source:c:\github\tic-tac-toe\gamedisplays.cpp
 	<iostream>
 	<string>
 	<fstream>

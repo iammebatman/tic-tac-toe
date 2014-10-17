@@ -7,6 +7,12 @@
 #include "gameChecks.h"
 #include "gameOperations.h"
 
+//clear screen
+void clearScreen()
+{
+    std::cout << std::string(100, '\n');
+}
+
 //splash screen
 void splashScreen()
 {
@@ -19,7 +25,6 @@ void splashScreen()
     std::cout << "  *******************************************\n";
     std::cout << "  *******************************************\n\n";
 }
-
 
 //main menu
 void mainMenu(int gameFile)
@@ -66,7 +71,8 @@ void mainMenu(int gameFile)
 //select game
 int selectGame()
 {
-    //declare varliables
+    clearScreen();
+    //declare variables
     int selection;
     std::string gameOneInitials;
     std::string gameTwoInitials;
@@ -259,6 +265,7 @@ int selectGame()
 //player statistics
 void showStatistics(int gameFile)
 {
+    clearScreen();
     //declare variables
     std::string playerInitials;
     int playerGamesPlayed;
@@ -303,9 +310,8 @@ void showStatistics(int gameFile)
 //display game board
 void getGameBoard(std::string n1, std::string n2, std::string n3, std::string n4, std::string n5, std::string n6, std::string n7, std::string n8, std::string n9)
 {
-
     //clear screen
-    std::cout << "\n\n\n\n\n\n\n\n\n\n";
+    clearScreen();
 
     //display game board
     std::cout << "  -----------------------\n\n";

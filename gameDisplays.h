@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+void clearScreen();
 void splashScreen();
 void mainMenu(int gameFile);
 int selectGame();

@@ -91,6 +91,7 @@ void gameOnePlayer(int gameFile)
         {
             //display game board and wait
             getGameBoard(n1, n2, n3, n4, n5, n6, n7, n8, n9);
+            std::cout << std::endl;
             Sleep(1000);
 
             //ai logic (defense)
