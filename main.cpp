@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <windows.h>
+#include <sys/stat.h>
 
 //function prototypes
 void splashScreen();
@@ -19,7 +20,7 @@ void updateStats(int gameFile, int x, int y, int z);
 void endGameMultiplayerForPlayerOne();
 void endGameMultiplayerForPlayerTwo();
 void endGameMultiplayerTie();
-
+bool fileExists(const std::string& filename);
 
 	//main function
 	int main()
@@ -85,6 +86,25 @@ void endGameMultiplayerTie();
 		}
 	}
 
+
+    // Function: fileExists
+    /**
+        Check if a file exists
+    @param[in] filename - the name of the file to check
+
+    @return    true if the file exists, else false
+
+    */
+    bool fileExists(const std::string& filename)
+    {
+        struct stat buf;
+        if (stat(filename.c_str(), &buf) != -1)
+        {
+            return true;
+        }
+        return false;
+    }
+
 	//select game
 	int selectGame()
 	{
@@ -101,6 +121,32 @@ void endGameMultiplayerTie();
 
 		while(true)
 		{
+
+			// check if save game files exist and create them if returned false
+			if(!fileExists("save1.txt"))
+            {
+                std::ofstream wipeFile1("save1.txt");
+                wipeFile1 << "---" << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
+                wipeFile1.close();
+            }
+            if(!fileExists("save2.txt"))
+            {
+                std::ofstream wipeFile2("save2.txt");
+                wipeFile2 << "---" << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
+                wipeFile2.close();
+            }
+            if(!fileExists("save3.txt"))
+            {
+                std::ofstream wipeFile3("save3.txt");
+                wipeFile3 << "---" << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
+                wipeFile3.close();
+            }
+            if(!fileExists("save4.txt"))
+            {
+                std::ofstream wipeFile4("save4.txt");
+                wipeFile4 << "---" << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
+                wipeFile4.close();
+            }
 
 			//open files and associate objects
 			std::ifstream saveOne("save1.txt");
@@ -162,8 +208,11 @@ void endGameMultiplayerTie();
 				if(gameOneEmpty == true)
 				{
 					std::string newInitials;
-					std::cout << "Enter your initials: ";
-					std::cin >> newInitials;
+					std::cout << "Enter your initials (exactly three letters): ";
+					while(newInitials.length() != 3)
+                    {
+                        std::cin >> newInitials;
+                    }
 					std::ofstream newGame("save1.txt");
 					newGame << newInitials << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
 					newGame.close();
@@ -175,8 +224,11 @@ void endGameMultiplayerTie();
 				if(gameTwoEmpty == true)
 				{
 					std::string newInitials;
-					std::cout << "Enter your initials: ";
-					std::cin >> newInitials;
+					std::cout << "Enter your initials (exactly three letters): ";
+					while(newInitials.length() != 3)
+                    {
+                        std::cin >> newInitials;
+                    }
 					std::ofstream newGame("save2.txt");
 					newGame << newInitials << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
 					newGame.close();
@@ -188,8 +240,11 @@ void endGameMultiplayerTie();
 				if(gameThreeEmpty == true)
 				{
 					std::string newInitials;
-					std::cout << "Enter your initials: ";
-					std::cin >> newInitials;
+					std::cout << "Enter your initials (exactly three letters): ";
+					while(newInitials.length() != 3)
+                    {
+                        std::cin >> newInitials;
+                    }
 					std::ofstream newGame("save3.txt");
 					newGame << newInitials << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
 					newGame.close();
@@ -201,8 +256,11 @@ void endGameMultiplayerTie();
 				if(gameFourEmpty == true)
 				{
 					std::string newInitials;
-					std::cout << "Enter your initials: ";
-					std::cin >> newInitials;
+					std::cout << "Enter your initials (exactly three letters): ";
+					while(newInitials.length() != 3)
+                    {
+                        std::cin >> newInitials;
+                    }
 					std::ofstream newGame("save4.txt");
 					newGame << newInitials << "\t" << 0 << "\t" << 0 << "\t" << 0 << std::endl;
 					newGame.close();
@@ -213,12 +271,11 @@ void endGameMultiplayerTie();
 			{
 				while(true)
 				{
-					int confirm;
+					std::string confirm;
 					std::cout << "Are you sure you want to delete all saved games?" << std::endl;
-					std::cout << "1 - YES" << std::endl;
-					std::cout << "2 - NO" << std::endl;
+					std::cout << "(type 'delete' and press enter to confirm): ";
 					std::cin >> confirm;
-					if(confirm == 1)
+					if(confirm == "delete")
 					{
 						//wipe all saves
 						std::ofstream wipeFile1("save1.txt");
@@ -450,6 +507,7 @@ void endGameMultiplayerTie();
 		{
 
 		}
+
 
 	//update statistics
 	void updateStats(int gameFile, int x, int y, int z)
