@@ -1,7 +1,6 @@
 #include <iostream>
 #include <windows.h>
 
-
 #include "game.h"
 #include "gameChecks.h"
 #include "gameDisplays.h"
@@ -9,19 +8,9 @@
 //game (single player with ai)
 void gameOnePlayer(int gameFile)
 {
-    //declare varliables
-    std::string n1 = "1";
-    std::string n2 = "2";
-    std::string n3 = "3";
-    std::string n4 = "4";
-    std::string n5 = "5";
-    std::string n6 = "6";
-    std::string n7 = "7";
-    std::string n8 = "8";
-    std::string n9 = "9";
-    int playerOneMoves = 0;
-    int computerMoves = 0;
-    int move;
+    //declare variables
+    std::string n1 = "1", n2 = "2", n3 = "3", n4 = "4", n5 = "5", n6 = "6", n7 = "7", n8 = "8", n9 = "9";
+    int playerOneMoves = 0, computerMoves = 0;
     bool tieGame = false;
 
     //main loop
@@ -29,66 +18,69 @@ void gameOnePlayer(int gameFile)
     {
         //show game board
         getGameBoard(n1, n2, n3, n4, n5, n6, n7, n8, n9);
-        std::cout << "  *** PLAYER ONE ***\n";
-        std::cout << "  Enter your move using 1 - 9: ";
+        std::cout << "  *** PLAYER ONE ***\n  Enter your move using 1 - 9: ";
+
+        //declare variables
+        int turnOver = 0;
 
         //player 1 move loop
-        while(true)
+        while(!turnOver)
         {
-            std::cin >> move;
-            if(move == 1 && n1 == "1")
+            int move = 0;
+            while(move!=1 && move!=2 && move!=3 && move!=4 && move!=5 && move!=6 && move!=7 && move!=8 && move!=9)
+                {
+                    std::cin >> move;
+                }
+            if(checkSpace(n1,n2,n3,n4,n5,n6,n7,n8,n9,move))
             {
-                n1 = "X";
-                playerOneMoves += 1;
-                break;
-            }
-            if(move == 2 && n2 == "2")
-            {
-                n2 = "X";
-                playerOneMoves += 1;
-                break;
-            }
-            if(move == 3 && n3 == "3")
-            {
-                n3 = "X";
-                playerOneMoves += 1;
-                break;
-            }
-            if(move == 4 && n4 == "4")
-            {
-                n4 = "X";
-                playerOneMoves += 1;
-                break;
-            }
-            if(move == 5 && n5 == "5")
-            {
-                n5 = "X";
-                playerOneMoves += 1;
-                break;
-            }
-            if(move == 6 && n6 == "6")
-            {
-                n6 = "X";
-                playerOneMoves += 1;
-                break;
-            }
-            if(move == 7 && n7 == "7")
-            {
-                n7 = "X";
-                playerOneMoves += 1;
-                break;
-            }
-            if(move == 8 && n8 == "8")
-            {
-                n8 = "X";
-                playerOneMoves += 1;
-                break;
-            }
-            if(move == 9 && n9 == "9")
-            {
-                n9 = "X";
-                playerOneMoves += 1;
-                break;
+                switch(move)
+                {
+                    case 1:
+                        n1 = "X";
+                        playerOneMoves += 1;
+                        turnOver = 1;
+                        break;
+                    case 2:
+                        n2 = "X";
+                        playerOneMoves += 1;
+                        turnOver = 1;
+                        break;
+                    case 3:
+                        n3 = "X";
+                        playerOneMoves += 1;
+                        turnOver = 1;
+                        break;
+                    case 4:
+                        n4 = "X";
+                        playerOneMoves += 1;
+                        turnOver = 1;
+                        break;
+                    case 5:
+                        n5 = "X";
+                        playerOneMoves += 1;
+                        turnOver = 1;
+                        break;
+                    case 6:
+                        n6 = "X";
+                        playerOneMoves += 1;
+                        turnOver = 1;
+                        break;
+                    case 7:
+                        n7 = "X";
+                        playerOneMoves += 1;
+                        turnOver = 1;
+                        break;
+                    case 8:
+                        n8 = "X";
+                        playerOneMoves += 1;
+                        turnOver = 1;
+                        break;
+                    case 9:
+                        n9 = "X";
+                        playerOneMoves += 1;
+                        turnOver = 1;
+                        break;
+                }
             }
         }
 
