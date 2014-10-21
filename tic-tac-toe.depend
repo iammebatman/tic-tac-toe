@@ -1,14 +1,14 @@
 # depslib dependency file v1.0
-1413576191 source:c:\github\tic-tac-toe\game.cpp
+1413915592 source:c:\github\tic-tac-toe\game.cpp
 	<iostream>
 	<windows.h>
 	"game.h"
-	"gameChecks.h"
-	"gameDisplays.h"
+	"gameBoard.h"
+	"gameOperations.h"
 
-1413572040 c:\github\tic-tac-toe\gamechecks.h
+1413816342 c:\github\tic-tac-toe\gamechecks.h
 
-1413577524 c:\github\tic-tac-toe\gamedisplays.h
+1413815148 c:\github\tic-tac-toe\gamedisplays.h
 	<iostream>
 
 1413576215 source:c:\github\tic-tac-toe\gamechecks.cpp
@@ -16,7 +16,7 @@
 	<string>
 	<sys/stat.h>
 
-1413569344 c:\github\tic-tac-toe\game.h
+1413915574 c:\github\tic-tac-toe\game.h
 
 1413578738 source:c:\github\tic-tac-toe\gamedisplays.cpp
 	<iostream>
@@ -27,14 +27,36 @@
 	"gameChecks.h"
 	"gameOperations.h"
 
-1413571418 c:\github\tic-tac-toe\gameoperations.h
-
-1413571436 source:c:\github\tic-tac-toe\gameoperations.cpp
+1413915483 c:\github\tic-tac-toe\gameoperations.h
+	<iostream>
+	<string>
 	<fstream>
-
-1413569443 source:c:\github\tic-tac-toe\main.cpp
+	<sys/stat.h>
 	"game.h"
-	"gameDisplays.h"
-	"gameChecks.h"
+
+1413915484 source:c:\github\tic-tac-toe\gameoperations.cpp
 	"gameOperations.h"
+
+1413912711 source:c:\github\tic-tac-toe\main.cpp
+	"gameBoard.h"
+	"gameOperations.h"
+	"game.h"
+
+1413814989 source:c:\github\tic-tac-toe\classes update.cpp
+
+1413815269 c:\github\tic-tac-toe\gamespaces.h
+
+1413817256 c:\github\tic-tac-toe\ai.h
+
+1413819371 source:c:\github\tic-tac-toe\ai.cpp
+	<iostream>
+	<string>
+	"ai.h"
+
+1413914603 c:\github\tic-tac-toe\gameboard.h
+	<iostream>
+	<string>
+
+1413914836 source:c:\github\tic-tac-toe\gameboard.cpp
+	"gameBoard.h"
 

@@ -2,22 +2,25 @@
 #include <windows.h>
 
 #include "game.h"
-#include "gameChecks.h"
-#include "gameDisplays.h"
+#include "gameBoard.h"
+#include "gameOperations.h"
 
 //game (single player with ai)
 void gameOnePlayer(int gameFile)
 {
     //declare variables
-    std::string n1 = "1", n2 = "2", n3 = "3", n4 = "4", n5 = "5", n6 = "6", n7 = "7", n8 = "8", n9 = "9";
     int playerOneMoves = 0, computerMoves = 0;
     bool tieGame = false;
 
+    //create game board object (using default constructor)
+    Board game;
+
     //main loop
-    while(endGame(n1, n2, n3, n4, n5, n6, n7, n8, n9, tieGame) == 0)
+    while(!game.gameOver(tieGame))
     {
         //show game board
-        getGameBoard(n1, n2, n3, n4, n5, n6, n7, n8, n9);
+        clearScreen();
+        game.displayBoard();
         std::cout << "  *** PLAYER ONE ***\n  Enter your move using 1 - 9: ";
 
         //declare variables
@@ -31,52 +34,52 @@ void gameOnePlayer(int gameFile)
                 {
                     std::cin >> move;
                 }
-            if(checkSpace(n1,n2,n3,n4,n5,n6,n7,n8,n9,move))
+            if(game.spaceIsClear(move))
             {
                 switch(move)
                 {
                     case 1:
-                        n1 = "X";
+                        game.setA1("X");
                         playerOneMoves += 1;
                         turnOver = 1;
                         break;
                     case 2:
-                        n2 = "X";
+                        game.setA2("X");
                         playerOneMoves += 1;
                         turnOver = 1;
                         break;
                     case 3:
-                        n3 = "X";
+                        game.setA3("X");
                         playerOneMoves += 1;
                         turnOver = 1;
                         break;
                     case 4:
-                        n4 = "X";
+                        game.setB1("X");
                         playerOneMoves += 1;
                         turnOver = 1;
                         break;
                     case 5:
-                        n5 = "X";
+                        game.setB2("X");
                         playerOneMoves += 1;
                         turnOver = 1;
                         break;
                     case 6:
-                        n6 = "X";
+                        game.setB3("X");
                         playerOneMoves += 1;
                         turnOver = 1;
                         break;
                     case 7:
-                        n7 = "X";
+                        game.setC1("X");
                         playerOneMoves += 1;
                         turnOver = 1;
                         break;
                     case 8:
-                        n8 = "X";
+                        game.setC2("X");
                         playerOneMoves += 1;
                         turnOver = 1;
                         break;
                     case 9:
-                        n9 = "X";
+                        game.setC2("X");
                         playerOneMoves += 1;
                         turnOver = 1;
                         break;
@@ -87,343 +90,70 @@ void gameOnePlayer(int gameFile)
         //check if game is over
         //if yes then break main loop
         //else continue to ai turn
-        while(endGame(n1, n2, n3, n4, n5, n6, n7, n8, n9, tieGame) == 0)
+        if(!game.gameOver(tieGame))
         {
             //display game board and wait
-            getGameBoard(n1, n2, n3, n4, n5, n6, n7, n8, n9);
+            clearScreen();
+            game.displayBoard();
             std::cout << std::endl;
             Sleep(1000);
 
-            //ai logic (defense)
-            if((n1 == "X") && (n5 == "X") && (n9 == "9"))
-            {
-                n9 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n1 == "1") && (n5 == "X") && (n9 == "X"))
-            {
-                n1 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n1 == "X") && (n5 == "5") && (n9 == "X"))
-            {
-                n5 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n3 == "X") && (n5 == "X") && (n7 == "7"))
-            {
-                n7 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n3 == "3") && (n5 == "X") && (n7 == "X"))
-            {
-                n3 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n3 == "X") && (n5 == "5") && (n7 == "X"))
-            {
-                n5 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n1 == "X") && (n2 == "X") && (n3 == "3"))
-            {
-                n3 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n1 == "1") && (n2 == "X") && (n3 == "X"))
-            {
-                n1 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n1 == "X") && (n2 == "2") && (n3 == "X"))
-            {
-                n2 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n4 == "X") && (n5 == "X") && (n6 == "6"))
-            {
-                n6 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n4 == "4") && (n5 == "X") && (n6 == "X"))
-            {
-                n4 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n4 == "X") && (n5 == "5") && (n6 == "X"))
-            {
-                n5 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n7 == "X") && (n8 == "X") && (n9 == "9"))
-            {
-                n9 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n7 == "7") && (n8 == "X") && (n9 == "X"))
-            {
-                n7 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n7 == "X") && (n8 == "8") && (n9 == "X"))
-            {
-                n8 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n1 == "X") && (n4 == "X") && (n7 == "7"))
-            {
-                n7 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n1 == "1") && (n4 == "X") && (n7 == "X"))
-            {
-                n1 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n1 == "X") && (n4 == "4") && (n7 == "X"))
-            {
-                n4 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n2 == "X") && (n5 == "X") && (n8 == "8"))
-            {
-                n8 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n2 == "2") && (n5 == "X") && (n8 == "X"))
-            {
-                n2 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n2 == "X") && (n5 == "4") && (n8 == "X"))
-            {
-                n5 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n3 == "X") && (n6 == "X") && (n9 == "9"))
-            {
-                n9 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n3 == "3") && (n6 == "X") && (n6 == "X"))
-            {
-                n3 = "O";
-                computerMoves += 1;
-                break;
-            }
-            if((n3 == "X") && (n6 == "6") && (n9 == "X"))
-            {
-                n6 = "O";
-                computerMoves += 1;
-                break;
-            }
+            //run ai script and return move
+            int aiMove = game.calculateAiMove();
 
-            //ai logic (offense)
-            if((n1 != "X") && (n5 != "X") && (n9 != "X"))
+            //commit ai move to board
+            switch(aiMove)
             {
-                if(n5 != "O")
-                {
-                    n5 = "O";
+                case 0:
+                    tieGame = true;
                     computerMoves += 1;
                     break;
-                }
-                if(n1 != "O")
-                {
-                    n1 = "O";
+                case 1:
+                    game.setA1("O");
                     computerMoves += 1;
                     break;
-                }
-                if(n9 != "O")
-                {
-                    n9 = "O";
+                case 2:
+                    game.setA2("O");
                     computerMoves += 1;
                     break;
-                }
-            }
-            if((n3 != "X") && (n5 != "X") && (n7 != "X"))
-            {
-                if(n5 != "O")
-                {
-                    n5 = "O";
+                case 3:
+                    game.setA3("O");
                     computerMoves += 1;
                     break;
-                }
-                if(n3 != "O")
-                {
-                    n3 = "O";
+                case 4:
+                    game.setB1("O");
                     computerMoves += 1;
                     break;
-                }
-                if(n7 != "O")
-                {
-                    n7 = "O";
+                case 5:
+                    game.setB2("O");
                     computerMoves += 1;
                     break;
-                }
-            }
-            if((n4 != "X") && (n5 != "X") && (n6 != "X"))
-            {
-                if(n5 != "O")
-                {
-                    n5 = "O";
+                case 6:
+                    game.setB3("O");
                     computerMoves += 1;
                     break;
-                }
-                if(n4 != "O")
-                {
-                    n4 = "O";
+                case 7:
+                    game.setC1("O");
                     computerMoves += 1;
                     break;
-                }
-                if(n6 != "O")
-                {
-                    n6 = "O";
+                case 8:
+                    game.setC2("O");
                     computerMoves += 1;
                     break;
-                }
-            }
-            if((n2 != "X") && (n5 != "X") && (n8 != "X"))
-            {
-                if(n5 != "O")
-                {
-                    n5 = "O";
+                case 9:
+                    game.setC3("O");
                     computerMoves += 1;
                     break;
-                }
-                if(n2 != "O")
-                {
-                    n2 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-                if(n8 != "O")
-                {
-                    n8 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-            }
-            if((n1 != "X") && (n2 != "X") && (n3 != "X"))
-            {
-                if(n1 != "O")
-                {
-                    n1 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-                if(n2 != "O")
-                {
-                    n2 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-                if(n3 != "O")
-                {
-                    n3 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-            }
-            if((n1 != "X") && (n4 != "X") && (n7 != "X"))
-            {
-                if(n1 != "O")
-                {
-                    n1 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-                if(n4 != "O")
-                {
-                    n4 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-                if(n7 != "O")
-                {
-                    n7 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-            }
-            if((n7 != "X") && (n8 != "X") && (n9 != "X"))
-            {
-                if(n7 != "O")
-                {
-                    n7 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-                if(n8 != "O")
-                {
-                    n8 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-                if(n9 != "O")
-                {
-                    n9 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-            }
-            if((n3 != "X") && (n6 != "X") && (n9 != "X"))
-            {
-                if(n3 != "O")
-                {
-                    n3 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-                if(n6 != "O")
-                {
-                    n6 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-                if(n9 != "O")
-                {
-                    n9 = "O";
-                    computerMoves += 1;
-                    break;
-                }
-            }
-
-            //if no possible moves
-            else
-            {
-                tieGame = true;
-                break;
             }
         }
     }
 
     //display final game board
-    getGameBoard(n1, n2, n3, n4, n5, n6, n7, n8, n9);
+    clearScreen();
+    game.displayBoard();
 
     //check how game finished and call corresponding ending
-    int gameEnd = endGame(n1, n2, n3, n4, n5, n6, n7, n8, n9, tieGame);
+    int gameEnd = game.gameOver(tieGame);
     if(gameEnd == 1)
     {
         endGameSingleForPlayer(gameFile);

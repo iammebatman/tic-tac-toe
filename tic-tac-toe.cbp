@@ -34,10 +34,8 @@
 		</Compiler>
 		<Unit filename="game.cpp" />
 		<Unit filename="game.h" />
-		<Unit filename="gameChecks.cpp" />
-		<Unit filename="gameChecks.h" />
-		<Unit filename="gameDisplays.cpp" />
-		<Unit filename="gameDisplays.h" />
+		<Unit filename="gameBoard.cpp" />
+		<Unit filename="gameBoard.h" />
 		<Unit filename="gameOperations.cpp" />
 		<Unit filename="gameOperations.h" />
 		<Unit filename="main.cpp" />

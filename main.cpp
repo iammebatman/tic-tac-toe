@@ -1,7 +1,6 @@
-#include "game.h"
-#include "gameDisplays.h"
-#include "gameChecks.h"
+#include "gameBoard.h"
 #include "gameOperations.h"
+#include "game.h"
 
 //main function
 int main()
