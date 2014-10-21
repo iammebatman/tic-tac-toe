@@ -79,7 +79,7 @@ void gameOnePlayer(int gameFile)
                         turnOver = 1;
                         break;
                     case 9:
-                        game.setC2("X");
+                        game.setC3("X");
                         playerOneMoves += 1;
                         turnOver = 1;
                         break;
